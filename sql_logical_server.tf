@@ -18,7 +18,7 @@ resource "azurerm_sql_firewall_rule" "firewall-rule-1" {
   resource_group_name = azurerm_resource_group.resource-group.name
   server_name         = azurerm_sql_server.sql_logical_server.name
   start_ip_address    = "0.0.0.0"       
-  end_ip_address      = "0.0.0.0"       # allow access to azure services
+  end_ip_address      = "0.0.0.0"
 }
 
 # Firewall rule to access database from local IP
