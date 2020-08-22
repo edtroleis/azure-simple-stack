@@ -12,10 +12,20 @@ resource "azurerm_sql_server" "sql_logical_server" {
   }
 }
 
-resource "azurerm_sql_firewall_rule" "firewall-rule" {
-  name                = "firewall-rule-example"
+# Firewall rule to enable "allow access to azure services"
+resource "azurerm_sql_firewall_rule" "firewall-rule-1" {
+  name                = "allow-access-to-azure-services"
   resource_group_name = azurerm_resource_group.resource-group.name
   server_name         = azurerm_sql_server.sql_logical_server.name
-  start_ip_address    = "0.0.0.0"       # allow access to azure services
+  start_ip_address    = "0.0.0.0"       
   end_ip_address      = "0.0.0.0"       # allow access to azure services
+}
+
+# Firewall rule to access database from local IP
+resource "azurerm_sql_firewall_rule" "firewall-rule-2" {
+  name                = "firewall-rule-access-local"
+  resource_group_name = azurerm_resource_group.resource-group.name
+  server_name         = azurerm_sql_server.sql_logical_server.name
+  start_ip_address    = "192.0.0.0"       # Put your local IP
+  end_ip_address      = "192.0.0.255"     # Put your local IP
 }
