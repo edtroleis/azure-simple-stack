@@ -16,6 +16,6 @@ resource "azurerm_sql_firewall_rule" "firewall-rule" {
   name                = "firewall-rule-example"
   resource_group_name = azurerm_resource_group.resource-group.name
   server_name         = azurerm_sql_server.sql_logical_server.name
-  start_ip_address    = "192.0.0.0"       # Put your IP
-  end_ip_address      = "192.0.0.255"     # Put your IP
+  start_ip_address    = "0.0.0.0"       # allow access to azure services
+  end_ip_address      = "0.0.0.0"       # allow access to azure services
 }
